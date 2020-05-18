@@ -1,4 +1,4 @@
-# maptalks-three-vue
+# maptalks-three-vue-demo
 
 ## Project setup
 ```
