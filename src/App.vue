@@ -1,12 +1,14 @@
 <template>
     <div id="app">
         <div class="header">
-            <router-link to="/"> index</router-link>
-            <router-link to="/first"> first</router-link>
-            <router-link to="/second"> second</router-link>
-            <router-link to="/three"> three</router-link>
-            <router-link to="/bar"> bar</router-link>
-            <router-link to="/bars"> bars</router-link>
+            <router-link to="/">index</router-link>
+            <router-link to="/first">first</router-link>
+            <router-link to="/second">second</router-link>
+            <router-link to="/three">three</router-link>
+            <router-link to="/bar">bar</router-link>
+            <router-link to="/bars">bars</router-link>
+            <router-link to="/buildings">buildings</router-link>
+            <router-link to="/buildings-color">buildings-color</router-link>
         </div>
         <Map />
         <!-- 路由出口 -->
