@@ -1,5 +1,6 @@
 import * as maptalks from 'maptalks';
 import * as THREE from 'three';
+import Stats from 'stats.js';
 
 
 export default {
@@ -31,11 +32,17 @@ export default {
         });
 
 
+        var stats;
         // eslint-disable-next-line no-unused-vars
         threeLayer.prepareToDraw = function (gl, scene, camera) {
             var light = new THREE.DirectionalLight(0xffffff);
             light.position.set(0, -10, 10).normalize();
             scene.add(light);
+
+            stats = new Stats();
+            stats.domElement.style.zIndex = 100;
+            document.getElementById('map').appendChild(stats.domElement);
+            animation();
         };
         threeLayer.addTo(map);
 
@@ -46,8 +53,9 @@ export default {
                 threeLayer.getRenderer().clearCanvas();
                 threeLayer.renderScene();
             }
+            stats.update();
             requestAnimationFrame(animation);
         }
-        animation();
+
     }
 }

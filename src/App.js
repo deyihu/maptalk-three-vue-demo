@@ -32,7 +32,7 @@ export default {
                 drawOnAxis: null,  // force dragging stick on a axis, can be: x, y
                 symbol: {
                     'textFaceName': 'sans-serif',
-                    'textName': 'MapTalks',
+                    'textName': 'hello maptalks.three',
                     'textFill': 'red',
                     'textHorizontalAlignment': 'right',
                     'textSize': 40

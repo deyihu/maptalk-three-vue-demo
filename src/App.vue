@@ -5,6 +5,8 @@
             <router-link to="/first"> first</router-link>
             <router-link to="/second"> second</router-link>
             <router-link to="/three"> three</router-link>
+            <router-link to="/bar"> bar</router-link>
+            <router-link to="/bars"> bars</router-link>
         </div>
         <Map />
         <!-- 路由出口 -->
@@ -48,5 +50,9 @@ body {
 .header a {
     color: #ffffff;
     margin-right: 20px;
+}
+
+.dg.ac{
+    z-index: 100;
 }
 </style>

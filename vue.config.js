@@ -3,7 +3,9 @@ module.exports = {
     configureWebpack: {
         externals: {
             maptalks: 'maptalks',
-            three: 'THREE'
+            three: 'THREE',
+            'stats.js': 'Stats',
+            'dat.gui': 'dat'
         }
     }
 }
