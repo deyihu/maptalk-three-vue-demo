@@ -9,6 +9,7 @@
             <router-link to="/bars">bars</router-link>
             <router-link to="/buildings">buildings</router-link>
             <router-link to="/buildings-color">buildings-color</router-link>
+            <router-link to="/extrudeline">extrudeline</router-link>
         </div>
         <Map />
         <!-- 路由出口 -->

@@ -7,6 +7,7 @@ import BarPage from './../pages/bar.vue';
 import BarsPage from './../pages/bars.vue';
 import BuildingsPage from './../pages/buildings.vue';
 import BuildingsColorPage from './../pages/buildings-color.vue';
+import ExtrudeLinePage from './../pages/extrudeline.vue';
 
 Vue.use(Router);
 
@@ -47,6 +48,11 @@ const constantRoutes = [
     {
         path: '/buildings-color',
         component: BuildingsColorPage
+        // hidden: true
+    },
+    {
+        path: '/extrudeline',
+        component: ExtrudeLinePage
         // hidden: true
     },
     // ...

@@ -7,7 +7,8 @@ module.exports = {
             maptalks: 'maptalks',
             three: 'THREE',
             'stats.js': 'Stats',
-            'dat.gui': 'dat'
+            'dat.gui': 'dat',
+            'lz-string': 'LZString'
         },
         plugins: [
             new CopyWebpackPlugin([
