@@ -4,12 +4,12 @@ import dat from 'dat.gui';
 export default {
     methods: {
         initBars() {
-            var bars, threeLayer = window.threeLayer;
+            var bars, threeLayer = this.getThreeLayer();
             var material = new THREE.MeshBasicMaterial({ color: '#fff', transparent: true });
             var highlightmaterial = new THREE.MeshBasicMaterial({ color: 'yellow', transparent: true });
             fetch('https://maptalks.org/maptalks.three/demo/data/population.json').then(res => res.json()).then(json => {
                 bars = json.filter(function (dataItem) {
-                    return dataItem[2] > 50;
+                    return dataItem[2] > 500;
                 }).map(function (dataItem) {
                     return {
                         coordinate: dataItem.slice(0, 2),
@@ -116,24 +116,18 @@ export default {
         }
     },
     mounted() {
-        window.map.setView({
+        const map = this.getMap();
+        map.setView({
             center: [19.06325670775459, 42.16842479475318],
             zoom: 6,
             pitch: 60,
-        });
-        const threeLayer = window.threeLayer;
-        if (threeLayer.getScene()) {
-            setTimeout(() => {
-                this.initBars();
-            }, 1000);
-        } else {
-            setTimeout(() => {
-                this.initBars();
-            }, 1000);
-        }
+        })
+        this.initThreeLayer(() => {
+            this.initBars();
+        })
     },
     destroyed() {
-        window.threeLayer.removeMesh(this.bars);
+        this.getThreeLayer().removeMesh(this.bars);
         this.gui.destroy();
     }
 };

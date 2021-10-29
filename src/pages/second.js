@@ -66,16 +66,17 @@ export default {
         }
     },
     mounted() {
-        const threeLayer = window.threeLayer;
-        if (threeLayer.getScene()) {
+        this.getMap().setView({
+            center: [13.384062075483484, 52.52392452635709],
+            zoom: 14,
+            pitch: 0,
+            bearing: 0,
+        });
+        this.initThreeLayer(() => {
             this.initBars();
-        } else {
-            setTimeout(() => {
-                this.initBars();
-            }, 1000);
-        }
+        })
     },
     destroyed() {
-        window.threeLayer.removeMesh(this.bars);
+        this.getThreeLayer().removeMesh(this.bars);
     }
 };

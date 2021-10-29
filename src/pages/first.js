@@ -3,7 +3,7 @@ import Circle from './../baseobjects/Circle';
 export default {
     methods: {
         initCircles() {
-            var circles, threeLayer = window.threeLayer;
+            var circles, threeLayer = this.getThreeLayer();
             var lnglats = [
                 [13.429362937522342, 52.518205849377495],
                 [13.41688993786238, 52.52216099633924],
@@ -76,16 +76,17 @@ export default {
         }
     },
     mounted() {
-        const threeLayer = window.threeLayer;
-        if (threeLayer.getScene()) {
+        this.getMap().setView({
+            center: [13.384062075483484, 52.52392452635709],
+            zoom: 14,
+            pitch: 0,
+            bearing: 0,
+        });
+        this.initThreeLayer(() => {
             this.initCircles();
-        } else {
-            setTimeout(() => {
-                this.initCircles();
-            }, 1000);
-        }
+        })
     },
     destroyed() {
-        window.threeLayer.removeMesh(this.circles);
+        this.getThreeLayer().removeMesh(this.circles);
     }
 };

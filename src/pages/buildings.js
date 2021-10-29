@@ -16,7 +16,7 @@ function getColor(level) {
 export default {
     methods: {
         initBuildings() {
-            var meshes, threeLayer = window.threeLayer;
+            var meshes, threeLayer = this.getThreeLayer();
             fetch('./assets/buildings.geojson').then(res => res.json()).then(json => {
                 const geojson = { "type": "FeatureCollection", features: [] };
                 json.forEach(element => {
@@ -28,12 +28,10 @@ export default {
                     var heightPerLevel = 10;
                     var levels = properties.levels || 1;
                     var color = getColor(levels);
-
                     var m = new THREE.MeshPhongMaterial({ color: color, opacity: 0.7 });
-                    //change to back side with THREE <= v0.94
-                    // m.side = THREE.BackSide;
-
-                    var mesh = threeLayer.toExtrudeMesh(polygon, levels * heightPerLevel, m, levels * heightPerLevel);
+                    var mesh = threeLayer.toExtrudePolygon(polygon, {
+                        height: heightPerLevel * levels
+                    }, m);
                     return mesh;
                 });
                 threeLayer.addMesh(meshes);
@@ -42,24 +40,17 @@ export default {
         }
     },
     mounted() {
-        window.map.setView({
+        this.getMap().setView({
             center: [13.416935229170008, 52.529564137540376],
             zoom: 16,
             pitch: 70,
             bearing: 180,
         });
-        const threeLayer = window.threeLayer;
-        if (threeLayer.getScene()) {
-            setTimeout(() => {
-                this.initBuildings();
-            }, 1000);
-        } else {
-            setTimeout(() => {
-                this.initBuildings();
-            }, 1000);
-        }
+        this.initThreeLayer(() => {
+            this.initBuildings();
+        })
     },
     destroyed() {
-        window.threeLayer.removeMesh(this.meshes);
+        this.getThreeLayer().removeMesh(this.meshes);
     }
 };

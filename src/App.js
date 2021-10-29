@@ -1,16 +1,13 @@
 // import HelloWorld from './components/HelloWorld.vue';
-import Map from './components/Map.vue';
 import * as maptalks from 'maptalks';
+import Map from './components/Map.vue';
 
 export default {
 
     name: 'App',
     data() {
         return {
-            mapView: {
-                center: [-0.113049, 51.498568],
-                zoom: 14,
-            }
+
         }
     },
     components: {
@@ -18,32 +15,14 @@ export default {
         Map,
     },
     mounted() {
-        const vectorLayer = window.vectorLayer;
-        var point = new maptalks.Marker(
-            window.map.getCenter(),
-            {
-                visible: true,
-                editable: true,
-                cursor: 'pointer',
-                shadowBlur: 0,
-                shadowColor: 'black',
-                draggable: false,
-                dragShadow: false, // display a shadow during dragging
-                drawOnAxis: null,  // force dragging stick on a axis, can be: x, y
-                symbol: {
-                    'textFaceName': 'sans-serif',
-                    'textName': 'hello maptalks.three',
-                    'textFill': 'red',
-                    'textHorizontalAlignment': 'right',
-                    'textSize': 40
-                }
-            }
-        );
-        point.addTo(vectorLayer);
-        this.point = point;
-
+        //test map
+        this.initThreeLayer(() => {
+            const map = this.getMap();
+            const layer = this.layer = new maptalks.VectorLayer('layer').addTo(map);
+            layer.addGeometry(new maptalks.Marker(map.getCenter()));
+        })
     },
     destroyed() {
-        // window.vectorLayer.removeGeometry(this.point);
+        // this.getMap().removeLayer(this.layer);
     }
 };
